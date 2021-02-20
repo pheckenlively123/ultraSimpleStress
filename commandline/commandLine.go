@@ -32,6 +32,16 @@ func GetOpts() CmdOpts {
 		panic("-doShaTest and -doFloatTest are mutually exclusive.")
 	}
 
+	if *iterations <= 0 {
+		flag.PrintDefaults()
+		panic("-iterations must be a positive integer.")
+	}
+
+	if *threads <= 0 {
+		flag.PrintDefaults()
+		panic("-threads must be a positive integer")
+	}
+
 	rv.Iterations = *iterations
 	rv.Threads = *threads
 	rv.DoShaTest = *doShaTest
