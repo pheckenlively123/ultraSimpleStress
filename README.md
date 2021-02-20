@@ -34,3 +34,31 @@ This is how many iterations of the selected benchmark to run in each thread.
 ## -threads
 
 This is the number of go routines to spawn while running the benchmark.
+
+# Real World Usage
+
+I recommend using this small benchmark with the UNIX time function.  The example below shows how this is useful.
+
+```
+Patricks-MacBook-Air:ultraSimpleStress patrickheckenlively$ time ./ultraSimpleStress -doShaTest -iterations 50000 -threads 8
+{true}{true}{true}{true}{true}{true}{true}{true}
+
+real    0m11.766s
+user    0m34.714s
+sys     0m3.931s
+```
+
+# Sample Real World Results
+
+The table below provides some real world results from some of the systems in my house.
+
+| Processor | OS | Arguments | Real | User | Sys |
+|:----------|:---|:----------|:-----|:-----|:----|
+| M1 | MacOS | -doShaTest -iterations 50000 -threads 8 | 0m11.766s | 0m34.714s | 0m3.931s |
+| AMD Ryzen 7 3700X 8-Core Processor | Linux | -doShaTest -iterations 50000 -threads 8 | 0m42.945s | 3m58.577s | 0m11.129s |
+| Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz | Linux | -doShaTest -iterations 50000 -threads 8 | 0m49.934s | 3m50.659s | 0m6.199s |
+| M1 | MacOS | -doFloatTest -iterations 10000000000 -threads 8 | 0m4.491s | 0m33.660s | 0m0.093s |
+| AMD Ryzen 7 3700X 8-Core Processor | Linux | -doFloatTest -iterations 10000000000 -threads 8 | 0m2.390s | 0m19.022s | 0m0.000s |
+| Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz | Linux | -doFloatTest -iterations 10000000000 -threads 8 | 0m5.289s | 0m41.094s | 0m0.048s |
+
+The M1 processor's sha256 performance, is IMO pretty surprising.  The x86_64 processor family has a native sha256 instruction.  Also, I have read that the x86_64 Go compilor has lots of assembly optimizations.  Based on the numbers above, I speculate that perhaps the M1 code uses the GPU built into the M1 processor.
