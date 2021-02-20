@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// ShaTest ...ShaTest stuct
 type ShaTest struct {
 	Done       chan StressComm
 	Iterations int
@@ -18,6 +19,7 @@ func doSha256(inString string) (shaStr string) {
 	return rv
 }
 
+// GetShaTest ...Constructor for the ShaTest object.
 func GetShaTest(iterations int, comm chan StressComm) ShaTest {
 
 	rv := new(ShaTest)
@@ -35,7 +37,7 @@ func (s ShaTest) RunTest() {
 	for i := 0; i < s.Iterations; i++ {
 		sum := doSha256(foo)
 		sum += ""
-		foo += fmt.Sprint(":%d", i)
+		foo += fmt.Sprintf(":%d", i)
 	}
 
 	rv := new(StressComm)
