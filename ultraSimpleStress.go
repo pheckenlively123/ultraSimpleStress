@@ -28,6 +28,8 @@ func main() {
 	for i := 0; i < opts.Threads; i++ {
 		done := <-comm
 
-		fmt.Print(done, "\n")
+		fmt.Print(done)
 	}
+
+	fmt.Print("\n")
 }
