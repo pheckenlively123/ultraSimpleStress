@@ -37,7 +37,8 @@ This is the number of go routines to spawn while running the benchmark.
 
 # Real World Usage
 
-I recommend using this small benchmark with the UNIX time function.  The example below shows how this is useful.
+I recommend using this small benchmark with the UNIX time command.
+The example below shows how this is useful.
 
 ```
 Patricks-MacBook-Air:ultraSimpleStress patrickheckenlively$ time ./ultraSimpleStress -doShaTest -iterations 50000 -threads 8
@@ -61,4 +62,9 @@ The table below provides some real world results from some of the systems in my 
 | AMD Ryzen 7 3700X 8-Core Processor | Linux | -doFloatTest -iterations 10000000000 -threads 8 | 0m2.390s | 0m19.022s | 0m0.000s |
 | Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz | Linux | -doFloatTest -iterations 10000000000 -threads 8 | 0m5.289s | 0m41.094s | 0m0.048s |
 
-The M1 processor's sha256 performance, is IMO pretty surprising.  The x86_64 processor family has a native sha256 instruction.  Also, I have read that the x86_64 Go compilor has lots of assembly optimizations.  Based on the numbers above, I speculate that perhaps the M1 code uses the GPU built into the M1 processor.
+The M1 processor's sha256 performance, is IMO pretty surprising.  The
+x86_64 processor family has a native sha256 instruction.  Also, I have
+read that the x86_64 implementation of the Go crypto library contains
+lots of assembly optimizations.  Based on the numbers above, I
+speculate that perhaps the M1 implementation (of at least sha256) uses
+the GPU built into the M1 processor.
