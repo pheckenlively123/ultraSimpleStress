@@ -1,9 +1,9 @@
 # ultraSimpleStress
 
-Now that go 1.16 supports M1 natively, I thought it might be
+Now that go 1.16 supports ```M1``` natively, I thought it might be
 interesting to write a dirt simple stress tester to see how
-performance on M1 compares to various x86_64 based machines running
-Linux.
+performance on ```M1``` compares to various ```x86_64``` based
+machines running Linux.
 
 The benchmark uses the flags package, so it understands -h.  The usage
 declaration is provided below.
@@ -56,7 +56,8 @@ sys     0m3.931s
 
 # Sample Real World Results
 
-The table below provides some real world results from some of the systems in my house.
+The table below provides some real world results from some of the
+systems in my house.
 
 | Processor | OS | Arguments | Real | User | Sys |
 |:----------|:---|:----------|:-----|:-----|:----|
